@@ -23,6 +23,28 @@ public class FinancingTests {
         });
     }
 
+    @Test
+    public void totalAmountShouldSetWhenValidData(){
+        //Arrange
+        Financing financing = FinancingFactory.createValidFinancing();
+
+        //Action
+        financing.setTotalAmount(90000.0);
+
+        //Assert
+        Assertions.assertEquals(90000.0, financing.getTotalAmount());
+    }
+
+    @Test
+    public void totalAmountShouldThrowExceptionWhenTheDataAreInvalid(){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Financing financing = FinancingFactory.createValidFinancing();
+
+            financing.setTotalAmount(1000000.0);
+        });
+    }
+
+
 
     @Test
     public void entryShouldCalculateTheValueOfEntry(){
